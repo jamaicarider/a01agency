@@ -170,8 +170,8 @@ function About() {
 
 const SERVICE_CARDS = [
   {
-    title: 'Brand systems',
-    src: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80',
+    title: 'Brand System',
+    src: '/media/brand.jpeg',
     alt: 'Projeto de identidade visual',
   },
   {
@@ -186,17 +186,17 @@ const SERVICE_CARDS = [
   },
   {
     title: 'Digital experiences',
-    src: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80',
+    src: '/media/experience.png',
     alt: 'Experiência digital para marcas',
   },
   {
     title: 'Creative direction',
-    src: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80',
+    src: '/media/creativedirection.jpeg',
     alt: 'Direção criativa para marcas',
   },
   {
     title: 'UX strategy',
-    src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80',
+    src: '/media/ux.jpeg',
     alt: 'Estratégia de UX e jornada do cliente',
   },
 ]
