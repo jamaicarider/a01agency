@@ -33,8 +33,8 @@ export default function Header({ theme = 'dark' }) {
       style={{ color: isDark ? '#fff' : 'var(--ink)' }}
     >
       <div className="site-header__inner container">
-        <Link to="/" className="site-header__brand">
-          {SITE.tagline}
+        <Link to="/" className="site-header__brand" aria-label={SITE.name}>
+          <img src="/media/a01.png" alt={SITE.name} className="site-header__logo" />
         </Link>
 
         <span className="site-header__meta">{SITE.location}</span>
@@ -69,9 +69,15 @@ export default function Header({ theme = 'dark' }) {
           gap: 24px;
         }
         .site-header__brand {
-          font-size: 12px;
-          font-weight: 500;
-          letter-spacing: 0.01em;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          line-height: 1;
+        }
+        .site-header__logo {
+          display: block;
+          width: 52px;
+          height: auto;
         }
         .site-header__meta {
           font-size: 12px;

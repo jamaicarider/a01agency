@@ -2,12 +2,21 @@ export default function HomeMobileTweaks() {
   return (
     <style>{`
       @media (max-width: 720px) {
+        html, body {
+          overflow-x: hidden;
+          max-width: 100vw;
+        }
+        .container {
+          max-width: 100%;
+          padding-left: 14px;
+          padding-right: 14px;
+        }
         .hero {
           min-height: 78vh;
         }
         .media-bg__el {
-          object-position: 75% center;
-          transform: scale(1.28);
+          object-position: 70% center;
+          transform: scale(1.32);
         }
         .hero__content {
           padding-top: 120px;
@@ -46,9 +55,9 @@ export default function HomeMobileTweaks() {
           justify-content: center;
         }
         .services__stack-card {
-          width: 92%;
-          height: min(82%, 420px);
-          left: 0%;
+          width: 86%;
+          height: min(72%, 360px);
+          left: 5%;
           transform: translateX(-50%);
         }
         .services__stack-label {
