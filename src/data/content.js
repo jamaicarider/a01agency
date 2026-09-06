@@ -11,7 +11,7 @@ export const SITE = {
 
 export const HERO = {
   headline:
-    'Sites que unem design de verdade e código bem escrito. Feitos pra converter, não só pra existir.',
+    'SITES FEITOS PARA CONVERTER, NÃO SÓ PARA EXISTIR.',
   scrollHint: 'Role para ver',
 }
 
