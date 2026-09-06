@@ -176,7 +176,7 @@ const SERVICE_CARDS = [
   },
   {
     title: 'Landing pages',
-    src: '/media/landingpage.png',
+    src: '/media/landingpage.jpg',
     alt: 'Equipe trabalhando em marketing digital',
   },
   {
