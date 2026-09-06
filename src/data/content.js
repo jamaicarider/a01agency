@@ -20,7 +20,7 @@ export const ABOUT = {
   paragraphs: [
     'Focados em transformar ideias em experiências digitais que carregam identidade, performance e propósito.',
     'Unimos direção de arte com engenharia front-end de verdade, entregando sites rápidos, responsivos e feitos pra durar.',
-    'Do primeiro wireframe ao deploy em produção — cada projeto recebe a mesma obsessão por detalhe. Porque “só um ajustinho rápido” nunca é só um ajustinho rápido.',
+    'Do primeiro wireframe ao deploy em produção. Cada projeto recebe a mesma obsessão por detalhe.' ,
   ],
   cta: 'Vamos trabalhar juntos',
 }

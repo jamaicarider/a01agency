@@ -56,7 +56,7 @@ export default function HomeMobileTweaks() {
         }
         .services__stack-card {
           width: 86%;
-          height: min(72%, 360px);
+          height: min(5200%, 460px);
           left: 5%;
           transform: translateX(-50%);
         }

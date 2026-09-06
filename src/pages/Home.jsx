@@ -171,17 +171,17 @@ function About() {
 const SERVICE_CARDS = [
   {
     title: 'Brand System',
-    src: '/media/brand.jpeg',
-    alt: 'Projeto de identidade visual',
+    src: '/media/sistems.jpg',
+    alt: 'Composição abstrata de camadas translúcidas',
   },
   {
     title: 'Landing pages',
-    src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80',
+    src: '/media/landingpage.png',
     alt: 'Equipe trabalhando em marketing digital',
   },
   {
     title: 'Product design',
-    src: 'https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=900&q=80',
+    src: '/media/design.jpg',
     alt: 'Interface e prototipagem digital',
   },
   {
@@ -336,7 +336,7 @@ function Services() {
         .services__stack-card {
           position: absolute;
           width: 100%;
-          height: min(86%, 560px);
+          height: min(78%, 520px);
           border-radius: 26px;
           overflow: hidden;
           background: #ece7df;
