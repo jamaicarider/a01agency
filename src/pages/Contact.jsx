@@ -4,7 +4,7 @@ import Header from '../components/Header'
 import WhatsAppButton from '../components/WhatsAppButton'
 import MediaBackground from '../components/MediaBackground'
 import ContactMobileTweaks from '../mobile/ContactMobile'
-import { CONTACT } from '../data/content'
+import { CONTENT } from '../data/content'
 
 // Fill these in with your EmailJS account (emailjs.com — free tier is enough
 // for a contact form). See README.md > "Enviar mensagens do formulário por
@@ -17,10 +17,11 @@ const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY'
 const initialForm = { name: '', email: '', phone: '', message: '' }
 const initialErrors = {}
 
-export default function Contact() {
+export default function Contact({ language = 'pt', setLanguage }) {
   const [form, setForm] = useState(initialForm)
   const [errors, setErrors] = useState(initialErrors)
   const [status, setStatus] = useState('idle') // idle | sending | sent | error
+  const copy = CONTENT[language]
 
   function update(field) {
     return (e) => {
@@ -31,10 +32,13 @@ export default function Contact() {
 
   function validate() {
     const next = {}
-    if (!form.name.trim()) next.name = 'Digite seu nome.'
-    if (!form.email.trim()) next.email = 'Digite seu e-mail.'
-    else if (!/^\S+@\S+\.\S+$/.test(form.email)) next.email = 'E-mail inválido.'
-    if (!form.message.trim()) next.message = 'Escreva sua mensagem.'
+    const validation = copy.CONTACT.validation
+
+    if (!form.name.trim()) next.name = validation.name
+    if (!form.email.trim()) next.email = validation.email
+    else if (!/^\S+@\S+\.\S+$/.test(form.email)) next.email = validation.invalidEmail
+    if (!form.message.trim()) next.message = validation.message
+
     setErrors(next)
     return Object.keys(next).length === 0
   }
@@ -66,24 +70,23 @@ export default function Contact() {
 
   return (
     <>
-      <Header theme="dark" />
+      <Header theme="dark" language={language} setLanguage={setLanguage} />
       <WhatsAppButton />
 
       <main className="contact">
         <div className="contact__bg">
-          {/* Drop the flower/ambient clip at /public/media/contact.mp4 (or .gif) */}
           <MediaBackground src="/media/contact.mp4" alt="" />
           <div className="contact__scrim" aria-hidden="true" />
         </div>
 
         <div className="container contact__wrap">
-          <span className="eyebrow eyebrow--light">{CONTACT.eyebrow}</span>
+          <span className="eyebrow eyebrow--light">{copy.CONTACT.eyebrow}</span>
 
           <form className="contact__form" onSubmit={handleSubmit} noValidate>
             <Field
               id="name"
-              label={CONTACT.fields.name.label}
-              placeholder={CONTACT.fields.name.placeholder}
+              label={copy.CONTACT.fields.name.label}
+              placeholder={copy.CONTACT.fields.name.placeholder}
               value={form.name}
               onChange={update('name')}
               error={errors.name}
@@ -91,8 +94,8 @@ export default function Contact() {
             <Field
               id="email"
               type="email"
-              label={CONTACT.fields.email.label}
-              placeholder={CONTACT.fields.email.placeholder}
+              label={copy.CONTACT.fields.email.label}
+              placeholder={copy.CONTACT.fields.email.placeholder}
               value={form.email}
               onChange={update('email')}
               error={errors.email}
@@ -100,16 +103,16 @@ export default function Contact() {
             <Field
               id="phone"
               type="tel"
-              label={CONTACT.fields.phone.label}
-              placeholder={CONTACT.fields.phone.placeholder}
+              label={copy.CONTACT.fields.phone.label}
+              placeholder={copy.CONTACT.fields.phone.placeholder}
               value={form.phone}
               onChange={update('phone')}
             />
             <Field
               id="message"
               as="textarea"
-              label={CONTACT.fields.message.label}
-              placeholder={CONTACT.fields.message.placeholder}
+              label={copy.CONTACT.fields.message.label}
+              placeholder={copy.CONTACT.fields.message.placeholder}
               value={form.message}
               onChange={update('message')}
               error={errors.message}
@@ -120,15 +123,15 @@ export default function Contact() {
               className="pill-button pill-button--light contact__submit"
               disabled={status === 'sending'}
             >
-              {status === 'sending' ? CONTACT.submitting : CONTACT.submit}
+              {status === 'sending' ? copy.CONTACT.submitting : copy.CONTACT.submit}
             </button>
 
             <p className="contact__status" role="status">
-              {status === 'sent' && CONTACT.success}
-              {status === 'error' && CONTACT.error}
+              {status === 'sent' && copy.CONTACT.success}
+              {status === 'error' && copy.CONTACT.error}
             </p>
 
-            <p className="contact__terms">{CONTACT.terms}</p>
+            <p className="contact__terms">{copy.CONTACT.terms}</p>
           </form>
         </div>
       </main>

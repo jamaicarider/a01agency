@@ -5,23 +5,25 @@ import Header from '../components/Header'
 import WhatsAppButton from '../components/WhatsAppButton'
 import MediaBackground from '../components/MediaBackground'
 import HomeMobileTweaks from '../mobile/HomeMobile'
-import { ABOUT, HERO, SERVICES } from '../data/content'
+import { CONTENT } from '../data/content'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
   show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
 }
 
-export default function Home() {
+export default function Home({ language = 'pt', setLanguage }) {
+  const copy = CONTENT[language]
+
   return (
     <>
-      <Header theme="dark" />
+      <Header theme="dark" language={language} setLanguage={setLanguage} />
       <WhatsAppButton />
 
       <main>
-        <Hero />
-        <About />
-        <Services />
+        <Hero language={language} />
+        <About language={language} />
+        <Services language={language} />
       </main>
 
       <footer className="site-footer">
@@ -41,10 +43,11 @@ export default function Home() {
   )
 }
 
-function Hero() {
+function Hero({ language }) {
+  const copy = CONTENT[language]
+
   return (
     <section className="hero">
-      {/* Drop the finished hero clip at /public/media/hero.mp4 (or .gif) — see README */}
       <MediaBackground src="/media/hero.mp4" alt="" />
       <div className="hero__scrim" aria-hidden="true" />
 
@@ -54,7 +57,7 @@ function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
         >
-          {HERO.headline}
+          {copy.HERO.headline}
         </motion.h1>
 
         <motion.span
@@ -63,7 +66,7 @@ function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.9 }}
         >
-          {HERO.scrollHint}
+          {copy.HERO.scrollHint}
         </motion.span>
       </div>
 
@@ -103,14 +106,16 @@ function Hero() {
   )
 }
 
-function About() {
+function About({ language }) {
+  const copy = CONTENT[language]
+
   return (
     <section className="about">
       <div className="container about__grid">
-        <span className="eyebrow">{ABOUT.eyebrow}</span>
+        <span className="eyebrow">{copy.ABOUT.eyebrow}</span>
 
         <div className="about__copy">
-          {ABOUT.paragraphs.map((p, i) => (
+          {copy.ABOUT.paragraphs.map((p, i) => (
             <motion.p
               key={i}
               variants={fadeUp}
@@ -128,10 +133,10 @@ function About() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: '-80px' }}
-            transition={{ delay: ABOUT.paragraphs.length * 0.08 }}
+            transition={{ delay: copy.ABOUT.paragraphs.length * 0.08 }}
           >
             <Link to="/contact" className="pill-button">
-              {ABOUT.cta}
+              {copy.ABOUT.cta}
               <ArrowIcon />
             </Link>
           </motion.div>
@@ -168,46 +173,55 @@ function About() {
   )
 }
 
-const SERVICE_CARDS = [
+const SERVICE_CARDS = (language) => [
   {
-    title: 'Brand System',
+    title: language === 'en' ? 'Brand System' : 'Sistema de marca',
     src: '/media/sistems.jpg',
-    alt: 'Composição abstrata de camadas translúcidas',
+    alt: language === 'en' ? 'Abstract composition of translucent layers' : 'Composição abstrata de camadas translúcidas',
   },
   {
-    title: 'Landing pages',
+    title: language === 'en' ? 'Landing pages' : 'Landing pages',
     src: '/media/landingpage.jpg',
-    alt: 'Equipe trabalhando em marketing digital',
+    alt: language === 'en' ? 'Team working on digital marketing' : 'Equipe trabalhando em marketing digital',
   },
   {
-    title: 'Product design',
+    title: language === 'en' ? 'Product design' : 'Design de produto',
     src: '/media/design.jpg',
-    alt: 'Interface e prototipagem digital',
+    alt: language === 'en' ? 'Interface and digital prototyping' : 'Interface e prototipagem digital',
   },
   {
-    title: 'Digital experiences',
+    title: language === 'en' ? 'Digital experiences' : 'Experiências digitais',
     src: '/media/experience.png',
-    alt: 'Experiência digital para marcas',
+    alt: language === 'en' ? 'Digital experience for brands' : 'Experiência digital para marcas',
   },
   {
-    title: 'Creative direction',
+    title: language === 'en' ? 'Creative direction' : 'Direção criativa',
     src: '/media/creativedirection.jpeg',
-    alt: 'Direção criativa para marcas',
+    alt: language === 'en' ? 'Creative direction for brands' : 'Direção criativa para marcas',
   },
   {
-    title: 'UX strategy',
+    title: language === 'en' ? 'UX strategy' : 'Estratégia de UX',
     src: '/media/ux.jpeg',
-    alt: 'Estratégia de UX e jornada do cliente',
+    alt: language === 'en' ? 'UX strategy and customer journey' : 'Estratégia de UX e jornada do cliente',
   },
 ]
 
-function ServiceCardStack() {
+function ServiceCardStack({ language }) {
   const [cards, setCards] = React.useState(
-    SERVICE_CARDS.map((card, index) => ({
+    SERVICE_CARDS(language).map((card, index) => ({
       ...card,
       id: `${card.title}-${index}`,
     }))
   )
+
+  React.useEffect(() => {
+    setCards(
+      SERVICE_CARDS(language).map((card, index) => ({
+        ...card,
+        id: `${card.title}-${index}`,
+      }))
+    )
+  }, [language])
 
   const moveToEnd = React.useCallback(() => {
     setCards((prev) => {
@@ -268,14 +282,16 @@ function ServiceCardStack() {
   )
 }
 
-function Services() {
+function Services({ language }) {
+  const copy = CONTENT[language]
+
   return (
     <section className="services">
       <div className="container services__grid">
-        <span className="eyebrow">{SERVICES.eyebrow}</span>
+        <span className="eyebrow">{copy.SERVICES.eyebrow}</span>
 
         <div className="services__media">
-          <ServiceCardStack />
+          <ServiceCardStack language={language} />
         </div>
 
         <div className="services__body">
@@ -285,11 +301,11 @@ function Services() {
             whileInView="show"
             viewport={{ once: true, margin: '-80px' }}
           >
-            {SERVICES.description}
+            {copy.SERVICES.description}
           </motion.p>
 
           <ul className="services__list">
-            {SERVICES.list.map((item, i) => (
+            {copy.SERVICES.list.map((item, i) => (
               <motion.li
                 key={item}
                 variants={fadeUp}
