@@ -5,8 +5,8 @@ const pt = {
     location: 'Curitiba, Brasil',
     whatsappNumber: '5541985060538',
     social: {
-      instagram: 'https://instagram.com/',
-      linkedin: 'https://linkedin.com/',
+      instagram: 'https://instagram.com/a01agency',
+     
     },
   },
   HEADER: {

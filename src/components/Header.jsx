@@ -46,9 +46,6 @@ export default function Header({ theme = 'dark', language = 'pt', setLanguage })
             <a href={copy.SITE.social.instagram} target="_blank" rel="noreferrer">
               IG.
             </a>
-            <a href={copy.SITE.social.linkedin} target="_blank" rel="noreferrer">
-              IN.
-            </a>
             <a href={`https://wa.me/${copy.SITE.whatsappNumber}`} target="_blank" rel="noreferrer">
               WA.
             </a>
